@@ -1,33 +1,29 @@
-def merge_sort(A):
-    p = 0
-    r = len(A) - 1
-    if p < r:
-        q = (p + r) // 2
-        merge_sort(A[p : q + 1])
-        merge_sort(A[q + 1 : r + 1])
-        merge(A, p, q, r)
+def merge_sort(arr):
+    if len(arr) < 2:
+        return arr
 
+    mid = len(arr) // 2
+    low_arr = merge_sort(arr[:mid])
+    high_arr = merge_sort(arr[mid:])
 
-# 중간,시작,끝
-def merge(A, p, q, r):
-    i, j = p, q + 1
-    tmp = A
-    while i <= q and j <= r:
-        if A[i] <= A[j]:
-            tmp[i] = A[i + 1]
+    merged_arr = []
+    l = h = 0
+    while l < len(low_arr) and h < len(high_arr):
+        if low_arr[l] < high_arr[h]:
+            merged_arr.append(low_arr[l])
+            l += 1
         else:
-            tmp = A[j + 1]
+            merged_arr.append(high_arr[h])
+            h += 1
 
-    while i <= q:
-        tmp = A[i + 1]
-    while j <= r:
-        tmp = A[j + 1]
-    i = p
-    while i <= r:
-        A[i + 1] = tmp
+    merged_arr += low_arr[l:]
+    merged_arr += high_arr[h:]
+    print(low_arr)
+    print(high_arr)
+    return merged_arr
 
 
 a, k = map(int, input().split())
-A = list(map(int, input().split()))
-merge_sort(A)
-print(A)
+arr = list(map(int, input().split()))
+merge_sort(arr)
+print(arr)

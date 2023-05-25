@@ -4,12 +4,15 @@ for i in range(n):
     l = list(map(int, input().split()))
     house.append(l)
 
-min_cost = 3001
-for i in range(n):
-    for j in range(n):
-        for k in range(n):
-            if i != j and j != k:
-                print(house[i][0] + house[j][1] + house[k][2])
-                min_cost = min(min_cost, house[i][0] + house[j][1] + house[k][2])
+c = []
+num = 0
+for i in range(6 * (n - 1)):
+    if i % (2 * (n - 1)) == 0:
+        num += 1
+    c.append([num])
 
-print(min_cost)
+
+for i in c:
+    if i[-1] != j:
+        i.append(j)
+print(c)

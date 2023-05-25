@@ -27,6 +27,6 @@ for _ in range(m):
     graph[v].append(u)
 
 for i in graph:
-    i.sort()
+    i.sort(reverse=1)
 bfs(graph, r, visited)
 print(*visited[1:], sep="\n")

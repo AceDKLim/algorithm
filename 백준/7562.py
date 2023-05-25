@@ -1,32 +1,26 @@
 from collections import deque
 
-dx1 = [2, 1, -1, -2]
-dy1 = [1, 2, 2, 1]
-dx2 = [-2, -1, 1, 2]
-dy2 = [-1, -2, -2, -1]
+dx = [2, 1, -1, -2, -2, -1, 1, 2]
+dy = [1, 2, 2, 1, -1, -2, -2, -1]
 
 
 def bfs(sx, sy):
+    if sx == tx and sy == ty:
+        return 0
     que = deque()
     que.append((sx, sy))
     while que:
         x, y = que.popleft()
-        if tx > x:
-            dx = dx1
-            dy = dy1
-        else:
-            dx = dx2
-            dy = dy2
-        for i in range(4):
+        for i in range(8):
             nx = x + dx[i]
             ny = y + dy[i]
             if nx < 0 or ny < 0 or nx >= l or ny >= l:
                 continue
-            que.append((nx, ny))
-            chess[nx][ny] = min(chess[x][y] + 1, chess[nx][ny])
-            print(*chess, sep="\n")
-            if nx == tx and ny == ty:
-                return chess[tx][ty]
+            if chess[nx][ny] == INF:
+                chess[nx][ny] = chess[x][y] + 1
+                que.append((nx, ny))
+                if nx == tx and ny == ty:
+                    return chess[tx][ty]
 
 
 t = int(input())
