@@ -1,29 +1,25 @@
-def merge_sort(arr):
-    if len(arr) < 2:
-        return arr
+# arr->배열, p-> 시작인덱스 r->끝인덱스
+def merge_sort(arr, p, r):
+    if p < r:
+        # q->중간 인덱스
+        q = (p + r) // 2
+    else:
+        return 0
+    merge_sort(arr, p, q)
+    merge_sort(arr, q + 1, r)
+    merge(arr, p, r)
 
-    mid = len(arr) // 2
-    low_arr = merge_sort(arr[:mid])
-    high_arr = merge_sort(arr[mid:])
 
-    merged_arr = []
-    l = h = 0
-    while l < len(low_arr) and h < len(high_arr):
-        if low_arr[l] < high_arr[h]:
-            merged_arr.append(low_arr[l])
-            l += 1
-        else:
-            merged_arr.append(high_arr[h])
-            h += 1
-
-    merged_arr += low_arr[l:]
-    merged_arr += high_arr[h:]
-    print(low_arr)
-    print(high_arr)
-    return merged_arr
+def merge(arr, p, r):
+    for i in sorted(arr[p : r + 1]):
+        result.append(i)
 
 
 a, k = map(int, input().split())
 arr = list(map(int, input().split()))
-merge_sort(arr)
-print(arr)
+result = []
+merge_sort(arr, 0, a - 1)
+if len(result) < k:
+    print(-1)
+else:
+    print(result[k - 1])

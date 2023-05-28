@@ -1,11 +1,27 @@
+from sys import stdin
+from collections import Counter
+
+input = stdin.readline
 n, m, b = map(int, input().split())
 
 land = []
-land_count = []
 for _ in range(n):
-    land.append(map(int, input().split()))
+    land += list(map(int, input().split()))
+land.sort()
 
-for i in range(n):
-    land_count.append(sum(land[i]))
-
-if land_count.count(max(land_count))<land_count.count(min(land_count)):
+time = 0
+while land[0] != land[-1]:
+    cnt = Counter(land)
+    mi = cnt[land[0]]
+    ma = cnt[land[-1]]
+    if mi > ma * 2 or mi > b:
+        b += ma
+        time += 2 * ma
+        for i in range(1, ma + 1):
+            land[-i] -= 1
+    else:
+        b -= mi
+        time += mi
+        for i in range(mi):
+            land[i] += 1
+print(time, max(land))

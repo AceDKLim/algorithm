@@ -1,10 +1,17 @@
+from sys import stdin
+
+input = stdin.readline
+
 n, m = map(int, input().split())
-num = list(map(int, input().split()))
-cnt = 0
-for i in range(n):
-    sum = 0
-    for j in range(i, n):
-        sum += num[j]
-        if sum % m == 0:
-            cnt += 1
+result = [0] + list(map(int, input().split()))
+remain = [0] * m
+
+for i in range(1, n + 1):
+    result[i] = (result[i] + result[i - 1]) % m
+    remain[result[i]] += 1
+
+cnt = remain[0]
+for i in remain:
+    cnt += (i * (i - 1)) // 2
+
 print(cnt)
