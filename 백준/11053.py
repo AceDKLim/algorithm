@@ -1,12 +1,9 @@
 n = int(input())
 s = list(map(int, input().split()))
 
-m = min(s)
-m_i = s.index(m)
-c = 1
-for i in range(m_i, n):
-    if s[i] > m:
-        m = s[i]
-        print(m)
-        c += 1
-print(c)
+l = [1 for _ in range(n)]
+for i in range(n):
+    for j in range(i):
+        if s[i] > s[j]:
+            l[i] = max(l[i], l[j] + 1)
+print(max(l))
