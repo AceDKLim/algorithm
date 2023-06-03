@@ -1,6 +1,5 @@
 w = int(input())
 weight = list(map(int, input().split()))
-weight.sort
 
 m = int(input())
 marble = list(map(int, input().split()))
@@ -14,11 +13,8 @@ for i in range(w):
     r = weight[i]
     dp[r] = 1
     for j in range(i + 1, w):
-        for k in range(j):
-            if weight[j] - weight[k] > 0:
-                dp[weight[j] - weight[k]] = 1
-            if r - weight[k] > 0:
-                dp[r - weight[k]] = 1
+        for k in range(j + 1):
+            dp[abs(r - weight[k])] = 1
         r += weight[j]
         dp[r] = 1
 
