@@ -1,1 +1,1 @@
-i[1]
+s = round(decimal.Decimal(n * 0.15))
