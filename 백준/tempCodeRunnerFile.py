@@ -1,1 +1,1 @@
-s = round(decimal.Decimal(n * 0.15))
+f[n] = cnt
