@@ -1,5 +1,6 @@
 from collections import deque
 
+# 입력 받아서 양, 음수로 쪼개기
 n, m = map(int, input().split())
 books = sorted(map(int, input().split()))
 m_books = deque([])
@@ -11,14 +12,8 @@ for i in books:
     else:
         p_books.appendleft(i)
 
-a = b = 0
-for i in range(min(m, len(m_books))):
-    a += m_books[i]
-
-for i in range(min(m, len(p_books))):
-    b += p_books[i]
-
-if abs(a) > b:
+# 양수 m개와 음수 m개중 뭐가 더 큰지 파악
+if abs(m_books[0]) > p_books[0]:
     result = abs(m_books.popleft())
     for _ in range(min(m - 1, len(m_books))):
         m_books.popleft()
