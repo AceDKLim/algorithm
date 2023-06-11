@@ -1,36 +1,18 @@
-from collections import deque
+s1 = input()
+s2 = input()
 
-n, m = map(int, input().split())
-books = sorted(map(int, input().split()))
-m_books = deque([])
-p_books = deque([])
+l1 = len(s1)
+l2 = len(s2)
 
-for i in books:
-    if i < 0:
-        m_books.append(i)
-    else:
-        p_books.appendleft(i)
+result = [0 for _ in range(l2)]
 
-a = b = 0
-for i in range(min(m, len(m_books))):
-    a += m_books[i]
 
-for i in range(min(m, len(p_books))):
-    b += p_books[i]
+for i in range(l1):
+    cnt = 1
+    for j in range(l2):
+        if result[j] >= cnt:
+            cnt = result[j] + 1
+        if s1[i] == s2[j]:
+            result[j] = cnt
 
-if abs(a) > b:
-    result = abs(m_books.popleft())
-    for _ in range(min(m - 1, len(m_books))):
-        m_books.popleft()
-else:
-    result = p_books.popleft()
-    for _ in range(min(m - 1, len(p_books))):
-        p_books.popleft()
-
-for i in range(0, len(m_books), m):
-    result += abs(m_books[i]) * 2
-
-for i in range(0, len(p_books), m):
-    result += p_books[i] * 2
-
-print(result)
+print(max(result))

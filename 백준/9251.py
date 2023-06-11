@@ -1,11 +1,15 @@
 s1 = input()
 s2 = input()
+l1 = len(s1)
+l2 = len(s2)
+result = [0 for _ in range(l2)]
 
-for i in s1:
-    if i not in s2:
-        s1.replace(i, "")
-for i in s2:
-    if i not in s1:
-        s2.replace(i, "")
-print(s1)
-print(s2)
+for i in range(l1):
+    cnt = 0
+    for j in range(l2):
+        if result[j] > cnt:
+            cnt = result[j]
+        elif s1[i] == s2[j]:
+            result[j] = cnt + 1
+
+print(max(result))
