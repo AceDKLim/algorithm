@@ -1,11 +1,11 @@
 n, m = map(int, input().split())
 
-cnt = 0
-money = []
+money = [0] * (m + 1)
 for _ in range(n):
     num = int(input())
-    if num <= m:
-        cnt += 1
-        money.append(num)
+    for i in range(num):
+        if money[i] == 1:
+            for j in range(i + num, m + 1):
+                money[j] += 1
 
-money.sort()
+print(money)

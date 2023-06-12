@@ -1,14 +1,17 @@
-s = list(input().split("+"))
-result = []
-for i in range(len(s)):
-    if "-" in s[i]:
-        s[i] = s[i].split("-")
-        for j in range(1, len(s[i])):
-            s[i][j] = int(s[i][j]) * -1
-        for j in range(len(s[i])):
-            result.append(int(s[i][j]))
+s = list(input())
+
+
+result = 0
+n = ""
+t = 1
+for i in s:
+    if i == "+" or i == "-":
+        result += int(n) * t
+        n = ""
+    if i == "-":
+        t = -1
     else:
-        result.append(s[i])
+        n += i
 
 
-print(result)
+print(result + int(n) * t)

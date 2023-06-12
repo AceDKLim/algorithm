@@ -1,13 +1,14 @@
 n = int(input())
-
-
 distance = list(map(int, input().split()))
 oil = list(map(int, input().split()))
-result = 0
+n -= 1
 
-while oil:
-    m = oil.index(min(oil))
-    result += sum(distance[m:]) * oil[m]
-    distance = distance[:m]
-    oil = oil[:m]
+result = 0
+m = oil[0]
+for i in range(n):
+    d = oil[i]
+    if m > d:
+        m = d
+    result += m * distance[i]
+
 print(result)
