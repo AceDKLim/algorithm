@@ -1,14 +1,17 @@
+from collections import deque
+
 n, k = map(int, input().split())
-road = [0]
+road = [1e9] * (100001)
 
-for i in range(1 - n, k - n + 2):
-    road.append(abs(i))
+road[n] = 0
+q = deque([n])
 
-for i in range(2, k + 2):
-    road[i] = min(road[i], road[i - 1] + 1)
-    if i % 2 == 0:
-        road[i] = min(road[i], road[i // 2] + 1)
-    road[i - 1] = min(road[i - 1], road[i] + 1)
-
-
+while q:
+    t = q.popleft()
+    for i in [t - 1, t + 1, t * 2]:
+        if i > 100000 or i < 0:
+            continue
+        if road[i] >= road[t] + 1:
+            q.append(i)
+            road[i] = road[t] + 1
 print(road[k])

@@ -1,29 +1,28 @@
-n, m = map(int, input().split())
-ladder = []
-snake = []
-for _ in range(n):
-    ladder.append(tuple(map(int, input().split())))
-for _ in range(m):
-    snake.append(int(input().split()[0]))
+from collections import deque
 
-result = int(1e9)
-for i in range(n):
-    now = 1
-    cnt1 = 0
-    while now < ladder[i][0]:
-        num = 6
-        while now + num in snake:
-            num -= 1
-        now += num
-        cnt1 += 1
-    now = ladder[i][1]
-    cnt2 = 0
-    while now < 100:
-        num = 6
-        while now + num in snake:
-            num -= 1
-        now += num
-        cnt2 += 1
-    if cnt1 + cnt2 < result:
-        result = cnt1 + cnt2
-print(result)
+n, m = map(int, input().split())
+move = {}
+game = [1e9] * 101
+for _ in range(n + m):
+    a, b = map(int, input().split())
+    move[a] = b
+
+game[1] = 0
+q = deque([1])
+d = [1, 2, 3, 4, 5, 6]
+
+while q:
+    t = q.popleft()
+    if t in move:
+        if game[move[t]] > game[t]:
+            game[move[t]] = game[t]
+            q.append(move[t])
+        continue
+    for i in range(6):
+        n = t + d[i]
+        if n > 100:
+            continue
+        if game[t] + 1 <= game[n]:
+            game[n] = game[t] + 1
+            q.append(n)
+print(game[100])
