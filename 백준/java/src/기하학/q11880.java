@@ -1,5 +1,6 @@
 package 기하학;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class q11880 {
@@ -7,16 +8,12 @@ public class q11880 {
         Scanner scan = new Scanner(System.in);
         int t = scan.nextInt();
         for (int i = 0; i < t; i++) {
-            double a = scan.nextDouble();
-            double b = scan.nextDouble();
-            double c = scan.nextDouble();
-            Double x = (Math.pow(a + b, 2) + Math.pow(c, 2));
-            Double y = (Math.pow(a + c, 2) + Math.pow(b, 2));
-            Double z = (Math.pow(b + c, 2) + Math.pow(a, 2));
-            System.out.println(x);
-            System.out.println(y);
-            System.out.println(z);
-            System.out.println((int) Math.min(z, Math.min(x, y)));
+            double r[] = new double[3];
+            for (int j = 0; j < 3; j++) {
+                r[j] = scan.nextDouble();
+            }
+            Arrays.sort(r);
+            System.out.println((Math.pow(r[0] + r[1], 2) + Math.pow(r[2], 2)));
         }
         scan.close();
     }
