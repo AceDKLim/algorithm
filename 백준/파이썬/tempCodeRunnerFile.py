@@ -1,2 +1,2 @@
-if t in snake:
-    #     continue
+
+                i.replace("-", "")

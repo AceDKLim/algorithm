@@ -14,10 +14,10 @@ public class q5617 {
             for (int i = 0; i < 3; i++) {
                 tri[i] = scan.nextInt();
             }
+            Arrays.sort(tri);
             if (tri[0] + tri[1] <= tri[2]) {
                 break;
             }
-            Arrays.sort(tri);
             int x = (int) Math.pow(tri[2], 2);
             int y = (int) Math.pow(tri[1], 2) + (int) Math.pow(tri[0], 2);
             if (x == y) {
@@ -30,7 +30,6 @@ public class q5617 {
         }
         int t = acute + obtuse + right;
         System.out.println(t + " " + right + " " + acute + " " + obtuse);
-        System.out.println("CR + LF");
         scan.close();
     }
 }

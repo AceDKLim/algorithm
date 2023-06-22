@@ -1,3 +1,5 @@
+package 기하학;
+
 import java.util.Scanner;
 
 public class q18221 {

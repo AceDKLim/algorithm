@@ -1,3 +1,5 @@
+package 기하학;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
