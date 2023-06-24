@@ -9,7 +9,7 @@ public class q13655 {
             int d = scan.nextInt();
             int vf = scan.nextInt();
             int vg = scan.nextInt();
-            double thief = 12 / vf;
+            double thief = 12.0 / vf;
             double police = Math.sqrt(144 + d * d) / vg;
             if (thief < police) {
                 System.out.println("N");
