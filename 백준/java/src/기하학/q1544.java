@@ -8,7 +8,7 @@ public class q1544 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
-        ArrayList str = new ArrayList<String>();
+        ArrayList<String> str = new ArrayList<String>();
         for (int i = 0; i <= n; i++) {
             String text = scan.nextLine();
             char[] c = text.toCharArray();
